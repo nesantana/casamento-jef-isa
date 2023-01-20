@@ -21,6 +21,80 @@ const GlobalStyled = createGlobalStyle`
     border-radius: 10px;
   }
 
+  .button {
+    background: #FF8989;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    width: 100%;
+    display: flex;
+    cursor: pointer;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    
+    svg {
+      margin-left: 5px;
+      font-size: 20px;
+    }
+  }
+
+  .gifts-open {
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, .7);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .1);
+
+    h3 {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    
+    h5 {
+      font-size: 14px;
+    }
+
+    h4 {
+      margin-top: 10px;
+      background: #FF8989;
+      color: #FFFFFF;
+      font-size: 14px;
+      padding: 10px 20px;
+      margin: 0;
+      margin-top: 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      
+      svg {
+        margin-left: 5px;
+        font-size: 20px;
+      }
+    }
+  }
+
+  input, select {
+    width: 100%;
+    height: 45px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    padding: 0 10px;
+    border: 0;
+    outline: none;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 145px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 0;
+    outline: none;
+    margin-bottom: 30px;
+  }
+
   .gifts {
     padding: 20px;
     border-radius: 10px;

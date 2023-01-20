@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
-import { BsCartPlusFill } from 'react-icons/bs'
+import { BsCartPlusFill, BsEnvelope } from 'react-icons/bs'
+import { useRouter } from 'next/router'
 
 export const gifts = [
   {
@@ -72,6 +73,8 @@ export const gifts = [
 ]
 
 export default function Home() {
+  const router = useRouter()
+
   return (
     <>
       <Head>
@@ -98,7 +101,7 @@ export default function Home() {
               <div className="row">
                 {
                   gifts.map(gift => (
-                    <div key={gift.id} className="col-6">
+                    <div key={gift.id} className="col-6" onClick={() => router.push('/' + gift.id)}>
                       <div className="gifts">
                         <img src={`/images/${gift.id + 1}.jpeg`} alt="" />
                         <h3>{gift.text}</h3>
@@ -112,7 +115,35 @@ export default function Home() {
           </div>
           <img src="/images/arabesco.png" alt="Arabesco" className='arabesco mt-5 pt-5' />
           <h2 className='pb-5 pt-5 mt-5'>
-            LISTA DE PRESENTES
+            CONFIRMAÇÃO DE PRESENÇA
+          </h2>
+          <div className="row justify-content-center">
+            <div className="col-lg-8 col-12">
+              <input type="text" placeholder='Nome completo' />
+              <select name="qtd" id="qtd">
+                <option value="">Selecione a quantidade de pessoas</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              <textarea name="observacao" id="observacao" placeholder='Observações (Justifique as pessoas a mais que levará)'></textarea>
+              <textarea name="mensagem" id="mensagem" placeholder='Deixe uma mensagem para os noivos!'></textarea>
+
+              <div className="row">
+                <div className="col-lg-4 col-12">
+                  <div className="button">
+                    Enviar confirmação
+                    <BsEnvelope />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <img src="/images/arabesco.png" alt="Arabesco" className='arabesco mt-5 pt-5' />
+          <h2 className='pb-5 pt-5 mt-5'>
+            OBRIGADO!
           </h2>
         </div>
       </main>
