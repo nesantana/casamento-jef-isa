@@ -33,6 +33,7 @@ const GlobalStyled = createGlobalStyle`
     justify-content: space-between;
     text-align: center;
     
+    
     svg {
       margin-left: 5px;
       font-size: 20px;
