@@ -2,27 +2,11 @@ import { createTransport } from 'nodemailer'
 
 const sendContact = async (req: any, res: any) => {
   const {
-    email,
     amount,
     infos,
     name,
     message: messageBody,
   } = req.body
-
-  let canKeep = true
-  const message = []
-
-  if (!email) {
-    canKeep = false
-    message.push('O campo "E-mail" é obrigatório')
-  }
-
-  if (!canKeep) {
-    res.status(500).json({
-      error: message,
-    })
-    return
-  }
 
   const transporter = createTransport({
     port: 465,

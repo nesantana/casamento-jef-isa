@@ -4,6 +4,7 @@ import { Inter } from '@next/font/google'
 import { BsCartPlusFill, BsEnvelope } from 'react-icons/bs'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { useToast } from '../hooks/useToast'
 
 export const gifts = [
   {
@@ -90,6 +91,40 @@ export default function Home() {
   const router = useRouter()
 
   const [page, setPage] = useState(0)
+  const [name, setName] = useState('')
+  const [amount, setAmount] = useState('')
+  const [message, setMessage] = useState('')
+  const [infos, setInfos] = useState('')
+
+  const { showSuccess, showError } = useToast()
+
+  const handleSubmit = async () => {
+    const body = {
+      name,
+      amount,
+      infos,
+      message,
+    }
+
+    try {
+      const data = await fetch('/api/confirm', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      })
+
+      if (data.status === 500) {
+        return showError('Opss, algo deu errado. Tente novamente.')
+      }
+
+      showSuccess('Oieee, obrigado por confirmar sua presença.')
+    } catch (e) {
+      showError('Opss, algo deu errado. Tente novamente.')
+    }
+  }
 
   return (
     <>
@@ -172,8 +207,8 @@ export default function Home() {
                 </h2>
                 <div className="row justify-content-center">
                   <div className="col-lg-8 col-12">
-                    <input type="text" placeholder='Nome completo' />
-                    <select name="qtd" id="qtd">
+                    <input type="text" value={name} onChange={({ target }) => setName(target.value)} placeholder='Nome completo' />
+                    <select name="amount" id="amount" value={amount} onChange={({ target }) => setAmount(target.value)}>
                       <option value="">Selecione a quantidade de pessoas</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -181,12 +216,12 @@ export default function Home() {
                       <option value="4">4</option>
                       <option value="5">5</option>
                     </select>
-                    <textarea name="observacao" id="observacao" placeholder='Observações (Justifique as pessoas a mais que levará)'></textarea>
-                    <textarea name="mensagem" id="mensagem" placeholder='Deixe uma mensagem para os noivos!'></textarea>
+                    <textarea name="observacao" value={infos} onChange={({ target }) => setInfos(target.value)} id="observacao" placeholder='Observações (Justifique as pessoas a mais que levará)'></textarea>
+                    <textarea name="mensagem" value={message} onChange={({ target }) => setMessage(target.value)} id="mensagem" placeholder='Deixe uma mensagem para os noivos!'></textarea>
 
                     <div className="row justify-content-between">
                       <div className="col-lg-4 col-12">
-                        <div className="button">
+                        <div className="button" onClick={handleSubmit}>
                           Enviar confirmação
                           <BsEnvelope />
                         </div>

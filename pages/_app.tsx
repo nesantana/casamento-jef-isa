@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app'
+import { ToastContainer } from 'react-toastify'
 
 import { createGlobalStyle } from 'styled-components'
 
@@ -150,6 +151,14 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <GlobalStyled />
       <Component {...pageProps} />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnHover
+      />
     </>
   )
 }
