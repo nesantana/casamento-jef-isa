@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { useMemo } from "react"
 import { BsCartPlusFill, BsCreditCard } from "react-icons/bs"
@@ -56,10 +57,12 @@ export default function Product() {
                       (67) 99113-8585
                     </h5>
 
+                    <Link href={product.link} target="_blank">
                     <div className="button mt-4">
                       Cartão de Crédito
                       <BsCreditCard />
                     </div>
+                    </Link>
                 </div>
               </div>
             </div>
@@ -73,7 +76,7 @@ export default function Product() {
           </div>
           <img src="/images/arabesco.png" alt="Arabesco" className='arabesco mt-5 pt-5' />
           <h2 className='pb-5 pt-5 mt-5'>
-            LISTA DE PRESENTES
+            OBRIGADO
           </h2>
         </div>
       </main>
